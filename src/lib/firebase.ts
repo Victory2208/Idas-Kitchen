@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { app } from "../../lib/firebase";
+// Removed incorrect import of 'app'
 
 
 const firebaseConfig = {
