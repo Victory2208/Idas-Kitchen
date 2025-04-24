@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getDatabase, ref, onValue, remove, update, push } from "firebase/database";
-import { app } from "../../lib/firebase";
+import { app } from "../lib/firebase";
 import { ShieldCheck } from "lucide-react";
 
 export default function AdminDashboardPage() {
@@ -30,7 +30,9 @@ export default function AdminDashboardPage() {
     onValue(guestbookRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
-        const entries = Object.entries(data).map(([id, entry]) => ({ id, ...entry }));
+        const entries = Object.entries(data).map(([id, entry]) => 
+          typeof entry === "object" && entry !== null ? { id, ...entry } : { id }
+        );
         setGuestbookEntries(entries);
       }
     });
