@@ -12,7 +12,7 @@ import {
 } from "firebase/database";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ShieldCheck } from "lucide-react";
-import { app } from "../../lib/firebase";
+import { app } from "../lib/firebase"; // Adjusted path to match the correct location
 
 export default function AdminDashboardPage() {
   const [adminUID, setAdminUID] = useState<string | null>(null);
@@ -53,7 +53,9 @@ export default function AdminDashboardPage() {
     onValue(guestbookRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
-        const entries = Object.entries(data).map(([id, entry]) => ({ id, ...entry }));
+        const entries = Object.entries(data).map(([id, entry]) => 
+          typeof entry === "object" && entry !== null ? { id, ...entry } : { id }
+        );
         setGuestbookEntries(entries);
       }
     });
