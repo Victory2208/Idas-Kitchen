@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getDatabase, ref, onValue, remove, update, push } from "firebase/database";
-import { app } from "@/lib/firebase";
+import { app } from "../../lib/firebase";
 import { ShieldCheck } from "lucide-react";
 
 export default function AdminDashboardPage() {
