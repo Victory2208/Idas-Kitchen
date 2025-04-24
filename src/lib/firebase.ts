@@ -1,8 +1,4 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-// Removed incorrect import of 'app'
-
+import { initializeApp, getApps, getApp } from "firebase/app";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBHNiV1lL2oxlNmGKEfJ7qDy7CHshVlM7M",
@@ -12,12 +8,9 @@ const firebaseConfig = {
   storageBucket: "idas-kitchen.firebasestorage.app",
   messagingSenderId: "177143028894",
   appId: "1:177143028894:web:4823742d52d4cb5d5d6f8f",
-  measurementId: "G-60LM33KNJC",
+
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 
-export { auth, db };
 export { app };
